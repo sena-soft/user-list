@@ -1,6 +1,6 @@
 // src/features/example/exampleSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User } from './components/pages/users/types';
+import { User } from './views/Users/types';
 
 export interface UsersState {
   data: User[];
