@@ -19,7 +19,7 @@ const DetailsView = () => {
     };
 
     fetchData();
-  }, []);
+  }, [userId]);
 
   return (
     <>

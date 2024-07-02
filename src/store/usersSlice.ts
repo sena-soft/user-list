@@ -5,13 +5,15 @@ import { User } from '../views/Users/types';
 export interface UsersState {
   data: User[];
   loading: boolean;
-  actionMade: boolean
+  actionMade: boolean;
+  userId: number | undefined;
 }
 
 const initialState: UsersState = {
   data: [],
   loading: false,
-  actionMade: false
+  actionMade: false,
+  userId: undefined
 };
 
 const usersSlice = createSlice({
@@ -27,6 +29,11 @@ const usersSlice = createSlice({
     },
     setActionMade(state, action: PayloadAction<boolean>) {
       state.actionMade = action.payload;
+      state.loading = false;
+      state.userId = undefined;
+    },
+    setUser(state, action: PayloadAction<number>) {
+      state.userId = action.payload;
     },
   }
 });
@@ -34,7 +41,8 @@ const usersSlice = createSlice({
 export const { 
     setData, 
     setLoading,
-    setActionMade
+    setActionMade,
+    setUser
 } = usersSlice.actions;
 
 export default usersSlice.reducer;

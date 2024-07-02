@@ -5,25 +5,36 @@ import { AppDispatch, RootState } from "../../store";
 import { useDispatch } from "react-redux";
 import { getUsers } from "./utils";
 import UserDetails from "../../components/UserDetails";
-import Modal from "../AddUser";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Button from "../../components/Button";
 import Loading from "../../components/Loading";
+import AddUser from "../AddUser";
+import DeleteUser from "../DeleteUser";
 
 const UsersView = () => {
   const data = useSelector((state: RootState) => state.users.data);
   const loading = useSelector((state: RootState) => state.users.loading);
+  const actionMade = useSelector((state: RootState) => state.users.actionMade);
+  const userId = useSelector((state: RootState) => state.users.userId);
   const dispatch: AppDispatch = useDispatch();
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalAddOpen, setIsModalAddOpen] = useState(false);
+  const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
 
   const handleOpenModal = () => {
-    setIsModalOpen(true);
+    setIsModalAddOpen(true);
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false);
+    setIsModalAddOpen(false);
+  };
+  const handleOpenModalDelete = () => {
+    setIsModalDeleteOpen(true);
+  };
+
+  const handleCloseModalDelete = () => {
+    setIsModalDeleteOpen(false);
   };
   useEffect(() => {
     const fetchData = async () => {
@@ -31,17 +42,14 @@ const UsersView = () => {
       try {
         const response = await getUsers();
         dispatch(setData(response));
-        console.log(response);
         dispatch(setLoading(false));
       } catch (err) {
         console.log(err);
         dispatch(setLoading(false));
       }
     };
-    if (!isModalOpen) {
-      fetchData();
-    }
-  }, [isModalOpen, dispatch]);
+    fetchData();
+  }, [dispatch, actionMade]);
 
   return (
     <>
@@ -52,7 +60,12 @@ const UsersView = () => {
       >
         Nuevo Usuario
       </Button>
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
+      <AddUser isOpen={isModalAddOpen} onClose={handleCloseModal} />
+      <DeleteUser
+        isOpen={isModalDeleteOpen}
+        onClose={handleCloseModalDelete}
+        idUser={userId}
+      />
       <div className="p-2">
         {loading ? (
           <Loading>Cargando Datos...</Loading>
@@ -71,7 +84,11 @@ const UsersView = () => {
 
             <tbody>
               {data.map((user) => (
-                <UserDetails key={user.id} user={user} />
+                <UserDetails
+                  key={user.id}
+                  user={user}
+                  onDelete={handleOpenModalDelete}
+                />
               ))}
             </tbody>
           </table>
