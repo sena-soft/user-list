@@ -1,5 +1,5 @@
 
 export interface UserElementProps {
     title: string;
-    value: string;
+    value?: string;
 }

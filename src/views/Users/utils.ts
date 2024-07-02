@@ -1,4 +1,4 @@
-import axios from "../../axiosConfig";
+import axios from "../../config/axiosConfig";
 import { User } from "./types";
 
 export const getUsers = async (): Promise<User[]> => {

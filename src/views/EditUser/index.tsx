@@ -6,6 +6,7 @@ import FormUser from "../../components/FormUser";
 import { SubmitHandler } from "react-hook-form";
 import { UserFormValues } from "../AddUser/types";
 import { toast } from "react-toastify";
+import Loading from "../../components/Loading";
 
 const EditUserView = () => {
     const { userId } = useParams();
@@ -52,18 +53,21 @@ const EditUserView = () => {
   };
   return (
     <>
-        <main className="mt-2 mx-auto max-w-6xl p-10 bg-white shadow">
       <div className="flex justify-between">
-        <h2 className="text-4xl font-black text-slate-500">{`Editar: ${userId}`}</h2>
+        <h2 className="text-3xl font-black text-slate-500">{`Editar: ${userId}`}</h2>
         <Link
           to="/"
-          className="rounded-md bg-indigo-600 p-3 text-sm font-bold text-white shadow-sm hover:bg-indigo-500"
+          className="rounded-md text-sm font-semibold p-2 text-slate-500 shadow-sm hover:bg-slate-300"
         >
           Regresar
         </Link>
       </div>
-      <FormUser isLoading={isLoading} onSubmit={onSubmit} user={user} />
-      </main>
+      {
+        isLoading ? <Loading>Cargando Datos...</Loading> : (
+          <FormUser isLoading={isLoading} onSubmit={onSubmit} user={user} />
+
+        )
+      }
     </>
   )
 }

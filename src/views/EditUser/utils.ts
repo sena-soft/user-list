@@ -1,4 +1,4 @@
-import axios from "../../axiosConfig";
+import axios from "../../config/axiosConfig";
 import { UserFormValues } from "../AddUser/types";
 import { User } from "../Users/types";
 

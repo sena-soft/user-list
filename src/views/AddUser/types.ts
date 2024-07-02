@@ -1,6 +1,6 @@
 import { GENDER, STATUS } from "../EditUser/utils";
 
-export interface ModalProps {
+export interface AddUserProps {
     isOpen: boolean;
     onClose: () => void;
 }

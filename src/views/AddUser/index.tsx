@@ -1,12 +1,12 @@
 import { SubmitHandler } from "react-hook-form";
 
-import { ModalProps, UserFormValues } from "./types";
+import { AddUserProps, UserFormValues } from "./types";
 import { addUser } from "./utils";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import FormUser from "../../components/FormUser";
 
-const Modal = ({ isOpen, onClose }: ModalProps) => {
+const AddUser = ({ isOpen, onClose }: AddUserProps) => {
   if (!isOpen) return null;
   const [isLoading, setIsLoading] = useState(false);
   
@@ -29,12 +29,12 @@ const Modal = ({ isOpen, onClose }: ModalProps) => {
   };
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-      <div className="bg-white p-8 rounded shadow-lg w-96">
-        <h2 className="text-2xl mb-4">Agregar Usuario</h2>
+      <div className="bg-white p-8 rounded shadow-lg w-1/3">
+        <h2 className="text-2xl mb-4 text-center">Agregar Usuario</h2>
         <FormUser isLoading={isLoading} onClose={onClose} onSubmit={onSubmit} />
       </div>
     </div>
   );
 };
 
-export default Modal;
+export default AddUser;

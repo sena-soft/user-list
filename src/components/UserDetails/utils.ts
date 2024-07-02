@@ -1,4 +1,4 @@
-import axios from "../../axiosConfig";
+import axios from "../../config/axiosConfig";
 import { User } from "../../views/Users/types";
 
 export const deleteUser = async (idUser: User['id']): Promise<User> => {

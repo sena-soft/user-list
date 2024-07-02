@@ -4,11 +4,11 @@ const UserElement = (
     {title, value} : UserElementProps
 ) => {
   return (
-    <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-      <dt className="text-sm font-medium leading-6 text-gray-900">{title}</dt>
-      <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+    <div className="px-4 py-6">
+      <div className="text-md font-bold leading-6 text-slate-500">{title}:</div>
+      <div className="font-semibold text-slate-700 rounded-md bg-slate-300 p-3 hover:bg-slate-600 hover:text-slate-200">
         {value}
-      </dd>
+      </div>
     </div>
   );
 };
