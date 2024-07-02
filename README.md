@@ -11,6 +11,9 @@ Use the modules below:
 - [React Toastify](https://www.npmjs.com/package/react-toastify) to show notifications
 - [Tailwind](https://tailwindcss.com) to create the styles
 
+## Live Preview
+
+[Demo](https://user-list-seven-jade.vercel.app)
 
 ## Requirements
 
