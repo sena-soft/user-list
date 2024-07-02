@@ -6,6 +6,10 @@ import { FormUserProps } from "./types";
 import { useEffect } from "react";
 import Button from "../Button";
 
+const CLASSES_INPUT = 'w-full px-3 py-2 bg-slate-200 border-slate-400 border rounded',
+    CLASSES_LABEL = 'block text-sm font-medium mb-2';
+
+
 const FormUser = ({ onSubmit, isLoading, onClose, user }: FormUserProps) => {
   const {
     register,
@@ -32,13 +36,13 @@ const FormUser = ({ onSubmit, isLoading, onClose, user }: FormUserProps) => {
     }
   }, [user, reset]);
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mt-5  ">
+    <form onSubmit={handleSubmit(onSubmit)} className="mt-5  bg-slate-200">
       <div className="mb-4">
-        <label className="block text-sm font-medium mb-2" htmlFor="name">
+        <label className={CLASSES_LABEL} htmlFor="name">
           Nombre
         </label>
         <input
-          className="w-full px-3 py-2  border rounded"
+          className={CLASSES_INPUT}
           type="text"
           id="name"
           {...register("name", { required: "Nombre es requerido" })}
@@ -46,11 +50,11 @@ const FormUser = ({ onSubmit, isLoading, onClose, user }: FormUserProps) => {
         {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
       </div>
       <div className="mb-4">
-        <label className="block text-sm font-medium mb-2" htmlFor="email">
+        <label className={CLASSES_LABEL} htmlFor="email">
           Email
         </label>
         <input
-          className="w-full px-3 py-2 border rounded w-"
+          className={CLASSES_INPUT}
           type="email"
           id="email"
           {...register("email", {
@@ -64,13 +68,13 @@ const FormUser = ({ onSubmit, isLoading, onClose, user }: FormUserProps) => {
         {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
       </div>
       <div className="mb-4">
-        <label className="block text-sm font-medium mb-2" htmlFor="gender">
+        <label className={CLASSES_LABEL} htmlFor="gender">
           Género
         </label>
         <select
           id="gender"
           {...register("gender", { required: "Género es requerido" })}
-          className="w-full px-3 py-2 border rounded"
+          className={CLASSES_INPUT}
         >
           <option value={GENDER.male}>Male</option>
           <option value={GENDER.female}>Female</option>
@@ -78,13 +82,13 @@ const FormUser = ({ onSubmit, isLoading, onClose, user }: FormUserProps) => {
         {errors.gender && <ErrorMessage>{errors.gender.message}</ErrorMessage>}
       </div>
       <div className="mb-4">
-        <label className="block text-sm font-medium mb-2" htmlFor="status">
+        <label className={CLASSES_LABEL} htmlFor="status">
           Status
         </label>
         <select
           id="status"
           {...register("status", { required: "Status es requerido" })}
-          className="w-full px-3 py-2 border rounded"
+          className={CLASSES_INPUT}
         >
           <option value={STATUS.active}>Active</option>
           <option value={STATUS.inactive}>Inactive</option>
